@@ -13,8 +13,14 @@ public class Main {
                 System.out.println("[hi,hello,how are you]");
             }
             String input = scanner.next();
+            terminalCommand(input);
             i++;
         } while (true);
+    }
+
+    public static void terminalCommand(String input) {
 
     }
+
 }
+
