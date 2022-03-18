@@ -3,37 +3,61 @@ package us.ilgar;
 import java.util.Scanner;
 
 enum Command {
-    creat, insert, remove, replace;
+    create, insert, remove, replace;
 }
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int i = 0;
-        System.out.println("Hi Dear. What Can I do?!");
+
         do {
-            if (i > 1) {
-                System.out.print("Your Array:");
-                System.out.println("[hi,hello,how are you]");
-            }
+
+            System.out.println("Write Your Command:");
+
             String input = scanner.next();
-            terminalCommand(input);
+            terminalCommandToEnum(input);
             i++;
         } while (true);
     }
 
-    public static void terminalCommand(String input) {
+    public static Command terminalCommandToEnum(String input) {
         input = input.toLowerCase();
-        Command command =Command.creat;
-        if (input.equals("creat"))
-            command = Command.creat;
-        if (input.equals("insert"))
-            command = Command.insert;
-        if (input.equals("remove"))
-            command = Command.remove;
-        if (input.equals("replace"))
-            command = Command.replace;
+        Command command = Command.create;
+        switch (input) {
+            case "creat":
+                command = Command.create;
+                break;
+            case "insert":
+                command = Command.insert;
+                break;
+            case "remove":
+                command = Command.remove;
+                break;
+            case "replace":
+                command = Command.replace;
+                break;
+            default:
+                return null;
+
+        }
+        return command;
     }
 
+    public static void create() {
+
+    }
+
+    public static void insert() {
+
+    }
+
+    public static void remove() {
+
+    }
+
+    public static void replace() {
+
+    }
 }
 
