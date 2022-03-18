@@ -2,6 +2,10 @@ package us.ilgar;
 
 import java.util.Scanner;
 
+enum Command {
+    creat, insert, remove, replace;
+}
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -19,7 +23,16 @@ public class Main {
     }
 
     public static void terminalCommand(String input) {
-
+        input = input.toLowerCase();
+        Command command =Command.creat;
+        if (input.equals("creat"))
+            command = Command.creat;
+        if (input.equals("insert"))
+            command = Command.insert;
+        if (input.equals("remove"))
+            command = Command.remove;
+        if (input.equals("replace"))
+            command = Command.replace;
     }
 
 }
