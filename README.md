@@ -1,5 +1,5 @@
 # Working with arrays in java.
-This project is about creating and editing arrays in Java whith Terminal :).</br>
+This project is about creating and editing arrays in Java whith Terminal :)</br>
 @author: Babak Roshani Khaivi</br>
 @with: ------------- </br>
 You can also follow me on my website: iLGAR.us</br>
