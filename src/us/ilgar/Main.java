@@ -103,7 +103,21 @@ public class Main {
     }
 
     public static void replace() {
+        // Reading array in file
+        String b[] = read();
+        Scanner replaceScanner = new Scanner(System.in);
+        String replaceCommand = replaceScanner.next();
+        String[] key = new String[2];
+        String temp = new String();
+        key = replaceCommand.split("=>");
 
+        b[Integer.parseInt(key[0])] = temp;
+        b[Integer.parseInt(key[0])] = b[Integer.parseInt(key[1])];
+        b[Integer.parseInt(key[1])] = temp;
+
+
+        // write an array to a file
+        write(b);
     }
 
     public static boolean checkArray(String[] array) {
@@ -121,7 +135,7 @@ public class Main {
             }
         } else if (array[0].matches("\\w")) {
             for (int i = 1; i < array.length; i++) {
-                if (!array[i].matches("\\w")) {
+                if (array[i].matches("\\w{1}")) {
                     return false;
                 }
             }
@@ -144,7 +158,7 @@ public class Main {
             in.close();
         } catch (IOException e) {
 
-            e.printStackTrace ();
+            e.printStackTrace();
         }
 
         String[] temp = strArray.split(" ");
