@@ -1,8 +1,14 @@
 package us.ilgar;
 
+import javax.management.StringValueExp;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 enum Command {
     create, insert, remove, replace, unknown;
@@ -14,7 +20,9 @@ public class Main {
         int i = 0;
 
         do {
-
+            if (read()[0] != null) {
+                System.out.println(Arrays.toString(read()));
+            }
             System.out.println("Write Your Command:");
 
             String input = scanner.next();
@@ -76,8 +84,14 @@ public class Main {
             Scanner creatScanner = new Scanner(System.in);
             String stringArray = creatScanner.next();
             array = stringArray.split(",");
-            System.out.print(Arrays.toString(array));
-        } while (checkArray(array));
+            if (!checkArray(array)) {
+                System.out.println("inequality of types");
+            } else {
+                System.out.println("Your Array has been created:");
+            }
+
+        } while (!checkArray(array));
+        write(array);
     }
 
     public static void insert() {
@@ -93,22 +107,75 @@ public class Main {
     }
 
     public static boolean checkArray(String[] array) {
-        if (array[1].matches("\\d")) {
-            for (int i = 0; i < array.length; i++) {
-                if (array[i].matches("\\D")) {
+        if (array[0].matches("\\d")) {
+            for (int i = 1; i < array.length; i++) {
+                if (!array[i].matches("\\d")) {
+                    return false;
+                }
+            }
+        } else if (array[0].matches("\\w{1}")) {
+            for (int i = 1; i < array.length; i++) {
+                if (!array[i].matches("\\w{1}")) {
+                    return false;
+                }
+            }
+        } else if (array[0].matches("\\w")) {
+            for (int i = 1; i < array.length; i++) {
+                if (!array[i].matches("\\w")) {
                     return false;
                 }
             }
         }
-        else if (array[1].matches("\\d")) {
-            for (int i = 0; i < array.length; i++) {
-                if (array[i].matches("\\D")) {
-                    return false;
-                }
+        return true;
+
+    }
+
+    public static String[] read() {
+        String filename = "array.txt";
+        String strArray = "";
+
+        String line;
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(filename));
+            while ((line = in.readLine()) != null) {
+                strArray += line + " ";
+
             }
+            in.close();
+        } catch (IOException e) {
+
+            e.printStackTrace ();
         }
 
-        return true;
+        String[] temp = strArray.split(" ");
+
+        String array[] = new String[temp.length];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = String.valueOf(temp[i]);
+        }
+        return array;
     }
+
+    public static void write(String[] x) {
+        String filename = "array.txt";
+        BufferedWriter outputWriter = null;
+        try {
+            outputWriter = new BufferedWriter(new FileWriter(filename));
+            for (int i = 0; i < x.length; i++) {
+
+                outputWriter.write(x[i] + "");
+
+                outputWriter.newLine();
+            }
+            outputWriter.flush();
+            outputWriter.close();
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
 }
+
 
