@@ -85,19 +85,41 @@ public class Main {
             Scanner creatScanner = new Scanner(System.in);
             String stringArray = creatScanner.next();
             array = stringArray.split(",");
-            if (!checkArray(array)) {
-                System.out.println("inequality of types");
-            } else {
-                System.out.println("Your Array has been created:");
-            }
 
         } while (!checkArray(array));
-        write(array);
+        if (checkArray(array)) {
+            write(array);
+            System.out.println("Your Array has been created:");
+        } else {
+            System.out.println("inequality of types");
+        }
     }
 
     public static void insert() {
+        // Reading array in file
+        int k = 0;
+        Scanner insertScanner = new Scanner(System.in);
+        String a[] = read();
+        String b[] = new String[a.length + 1];
+        for (int i = 0; i <= a.length; i++) {
+            if (i < a.length) {
+                b[i] = a[i];
+            } else {
+                k = a.length;
+            }
+
+        }
+        b[k] = insertScanner.next();
+        // write an array to a file
+
+        if (checkArray(b)) {
+            write(b);
+        } else {
+            System.out.println("inequality of types");
+        }
 
     }
+
 
     public static void remove() {
         // Reading array in file
@@ -106,6 +128,7 @@ public class Main {
         int key = removeScanner.nextInt();
         b[key] = null;
         // write an array to a file
+
         write(b);
     }
 
@@ -124,8 +147,10 @@ public class Main {
         b[Integer.parseInt(key[1])] = temp;
 
 
+
         // write an array to a file
         write(b);
+
     }
 
     public static boolean checkArray(String[] array) {
