@@ -20,6 +20,7 @@ public class Main {
         int i = 0;
 
         do {
+            System.out.println("**********************");
             if (read()[0] != null) {
                 System.out.println(Arrays.toString(read()));
             }
@@ -99,8 +100,15 @@ public class Main {
     }
 
     public static void remove() {
-
+        // Reading array in file
+        String b[] = read();
+        Scanner removeScanner = new Scanner(System.in);
+        int key = removeScanner.nextInt();
+        b[key] = null;
+        // write an array to a file
+        write(b);
     }
+
 
     public static void replace() {
         // Reading array in file
@@ -111,7 +119,7 @@ public class Main {
         String temp = new String();
         key = replaceCommand.split("=>");
 
-        b[Integer.parseInt(key[0])] = temp;
+        temp = b[Integer.parseInt(key[0])];
         b[Integer.parseInt(key[0])] = b[Integer.parseInt(key[1])];
         b[Integer.parseInt(key[1])] = temp;
 
