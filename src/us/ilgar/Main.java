@@ -136,15 +136,32 @@ public class Main {
     public static void replace() {
         // Reading array in file
         String b[] = read();
-        Scanner replaceScanner = new Scanner(System.in);
-        String replaceCommand = replaceScanner.next();
-        String[] key = new String[2];
-        String temp = new String();
-        key = replaceCommand.split("=>");
+        if (intlizeDimensional(b) == 1) {
+            Scanner replaceScanner = new Scanner(System.in);
+            String replaceCommand = replaceScanner.next();
+            String[] key = new String[2];
+            String temp = new String();
+            key = replaceCommand.split("=>");
 
-        temp = b[Integer.parseInt(key[0])];
-        b[Integer.parseInt(key[0])] = b[Integer.parseInt(key[1])];
-        b[Integer.parseInt(key[1])] = temp;
+            temp = b[Integer.parseInt(key[0])];
+            b[Integer.parseInt(key[0])] = b[Integer.parseInt(key[1])];
+            b[Integer.parseInt(key[1])] = temp;
+        } else if (intlizeDimensional(b) == 2) {
+            int count = intlizeContOfElements(b);
+            Scanner replaceScanner = new Scanner(System.in);
+            String replaceCommand = replaceScanner.next();
+            String[] key = new String[2];
+            String temp = new String();
+            key = replaceCommand.split("=>");
+            String[] key2 = new String[2];
+            String[] key3 = new String[2];
+            key2 = key[0].split(",");
+            key3 = key[1].split(",");
+            temp = b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])];
+            b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])] =
+                    b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])];
+            b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])] = temp;
+        }
 
 
         // write an array to a file
@@ -223,19 +240,33 @@ public class Main {
     }
 
     public static int intlizeDimensional(String[] array) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].matches("")) {
-                return 2;
-            } else if (array[i].matches("")) {
-                return 2;
-            }
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i].matches("[")) {
+//                return 2;
+//            } else if (array[i].matches("[[")) {
+//                return 3;
+//            }
+//
+//
+//        }
 
+        return 2;
+    }
+
+    public static int intlizeContOfElements(String[] array) {
+        int count = 0;
+        for (int i = 0; ; i++) {
+
+            if (array[i].substring(array.length).equals("]")) {
+                count = i;
+                break;
+
+            }
 
         }
 
-        return 1;
+        return count + 1;
     }
-
 }
 
 
