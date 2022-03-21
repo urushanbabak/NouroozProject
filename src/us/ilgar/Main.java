@@ -20,7 +20,7 @@ public class Main {
         int i = 0;
 
         do {
-            System.out.println("**********************");
+
             if (read()[0] != null) {
                 System.out.println(Arrays.toString(read()));
             }
@@ -33,6 +33,7 @@ public class Main {
 
             checkCommand(terminalCommandToEnum(input));
             i++;
+            System.out.println("**********************");
         } while (true);
     }
 
@@ -85,15 +86,14 @@ public class Main {
             Scanner creatScanner = new Scanner(System.in);
             String stringArray = creatScanner.next();
             array = stringArray.split(",");
-
-        } while (!checkArray(array));
-        if (checkArray(array)) {
-            write(array);
-            System.out.println("Your Array has been created:");
-        } else {
             System.out.println("inequality of types");
-        }
+        } while (!checkArray(array));
+        write(array);
+        System.out.println("Your Array has been created:");
+        System.out.println(intlizeDimensional(array));
+
     }
+
 
     public static void insert() {
         // Reading array in file
@@ -145,7 +145,6 @@ public class Main {
         temp = b[Integer.parseInt(key[0])];
         b[Integer.parseInt(key[0])] = b[Integer.parseInt(key[1])];
         b[Integer.parseInt(key[1])] = temp;
-
 
 
         // write an array to a file
@@ -221,6 +220,20 @@ public class Main {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    public static int intlizeDimensional(String[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].matches("")) {
+                return 2;
+            } else if (array[i].matches("")) {
+                return 2;
+            }
+
+
+        }
+
+        return 1;
     }
 
 }
