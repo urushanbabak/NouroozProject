@@ -84,7 +84,7 @@ public class Main {
 
     public static void create() {
         System.out.println("Define Your Array");
-        String[] array = new String[10];
+        String[] array = new String[20];
         do {
             Scanner creatScanner = new Scanner(System.in);
             String stringArray = creatScanner.next();
@@ -99,27 +99,48 @@ public class Main {
 
     public static void insert() {
         // Reading array in file
-        int k = 0;
+
         Scanner insertScanner = new Scanner(System.in);
-        String a[] = read();
-        String b[] = new String[a.length + 1];
-        for (int i = 0; i <= a.length; i++) {
-            if (i < a.length) {
-                b[i] = a[i];
+        String b[] = read();
+        if (intlizeDimensional(b) == 1) {
+            int key = insertScanner.nextInt();
+            b[key] = insertScanner.next();
+
+
+        } else if (intlizeDimensional(b) == 2) {
+            int count = intlizeContOfElements(b);
+            String[] key = new String[2];
+            String keyString = insertScanner.next();
+            if (keyString.matches("\\d,\\d")) {
+                key = keyString.split(",");
+                String[] editString = new String[2];
+                editString[0] = b[Integer.parseInt(key[0]) * count + Integer.parseInt(key[1])];
+                editString[1] = insertScanner.next();
+                editString = editString(editString);
+                b[Integer.parseInt(key[0]) * count + Integer.parseInt(key[1])] = editString[1];
+                // write an array to a file
+                if (checkArray(b)) {
+                    write(b);
+                } else {
+                    System.out.println("inequality of types");
+                }
             } else {
-                k = a.length;
+                String[] newElements = insertScanner.next().split(",");
+                String[] newb = new String[count * (Integer.parseInt(keyString)+1)];
+                for (int i = 0; i < b.length; i++) {
+                    newb[i] = b[i];
+                }
+                for (int i = 0; i < count; i++) {
+                    newb[Integer.parseInt(keyString) * count + i] = newElements[i];
+                }
+                // write an array to a file
+                if (checkArray(newb)) {
+                    write(newb);
+                } else {
+                    System.out.println("inequality of types");
+                }
             }
-
         }
-        b[k] = insertScanner.next();
-        // write an array to a file
-
-        if (checkArray(b)) {
-            write(b);
-        } else {
-            System.out.println("inequality of types");
-        }
-
     }
 
 
