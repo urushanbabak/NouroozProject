@@ -9,6 +9,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
 enum Command {
     create, insert, remove, replace, unknown;
@@ -90,7 +93,6 @@ public class Main {
         } while (!checkArray(array));
         write(array);
         System.out.println("Your Array has been created:");
-        System.out.println(intlizeDimensional(array));
 
     }
 
@@ -157,9 +159,14 @@ public class Main {
             String[] key3 = new String[2];
             key2 = key[0].split(",");
             key3 = key[1].split(",");
+            String[] strEditing = new String[2];
+            strEditing[0] = b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])];
+            strEditing[1] = b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])];
+            String[] editedStr = editString(strEditing);
+            b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])] = editedStr[0];
+            b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])] = editedStr[1];
             temp = b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])];
-            b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])] =
-                    b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])];
+            b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])] = b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])];
             b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])] = temp;
         }
 
@@ -257,7 +264,7 @@ public class Main {
         int count = 0;
         for (int i = 0; ; i++) {
 
-            if (array[i].substring(array.length).equals("]")) {
+            if (array[i].substring(array[i].length() - 1).equals("]")) {
                 count = i;
                 break;
 
@@ -267,6 +274,70 @@ public class Main {
 
         return count + 1;
     }
+
+    public static String[] editString(String[] str) {
+        String[] newStr = str;
+        if (isBraketLeft(newStr[0]) && isBraketRight(newStr[1])) {
+            newStr[0] = newStr[0].replace("[", "");
+            newStr[0] = newStr[0] + "]";
+            newStr[1] = newStr[1].replace("]", "");
+            newStr[1] = "[" + newStr[1];
+            return newStr;
+        } else if (isBraketRight(newStr[0]) && isBraketLeft(newStr[1])) {
+            newStr[1] = newStr[1].replace("[", "");
+            newStr[1] = newStr[1] + "]";
+            newStr[0] = newStr[0].replace("]", "");
+            newStr[0] = "[" + newStr[0];
+            return newStr;
+        } else if (isBraketLeft(newStr[0]) || isBraketLeft(newStr[1])) {
+            if (isBraketLeft(newStr[0]) && isBraketLeft(newStr[1])) {
+                return newStr;
+            } else if (!isBraketLeft(newStr[1])) {
+                newStr[1] = "[" + newStr[1];
+                newStr[0] = newStr[0].replace("[", "");
+                return newStr;
+            } else if (!isBraketLeft(newStr[0])) {
+                newStr[0] = "[" + newStr[0];
+                newStr[1] = newStr[1].replace("[", "");
+                return newStr;
+            }
+
+        } else if (isBraketRight(newStr[0]) || isBraketRight(newStr[1])) {
+            if (isBraketRight(newStr[0]) && isBraketRight(newStr[1])) {
+                return newStr;
+            } else if (!isBraketRight(newStr[1])) {
+                newStr[1] = newStr[1] + "]";
+                newStr[0] = newStr[0].replace("]", "");
+                return newStr;
+            } else if (!isBraketRight(newStr[0])) {
+                newStr[0] = newStr[0] + "]";
+                newStr[1] = newStr[1].replace("]", "");
+                return newStr;
+            }
+        }
+
+
+        return newStr;
+
+    }
+
+
+    public static boolean isBraketLeft(String str) {
+        if (str.contains("[")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isBraketRight(String str) {
+        if (str.contains("]")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 

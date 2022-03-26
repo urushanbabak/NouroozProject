@@ -1,6 +1,8 @@
+[roshani
+sil
+khaivi
+ilgar]
 [babak
-roshani
-khiavi]
-[ilgar
-rosahni
-khiavi]
+urushan
+kha
+nvna]
