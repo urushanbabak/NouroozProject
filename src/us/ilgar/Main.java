@@ -24,8 +24,9 @@ public class Main {
 
         do {
 
-            if (read()[0] != null) {
-                System.out.println(Arrays.toString(read()));
+            if (readx()[0] != null) {
+                System.out.println("X=" + " " + Arrays.toString(readx()));
+                System.out.println("Y=" + " " + Arrays.toString(ready()));
             }
             System.out.println("Write Your Command:");
 
@@ -83,6 +84,8 @@ public class Main {
     }
 
     public static void create() {
+        Scanner createScanner = new Scanner(System.in);
+        String arrayName = createScanner.next();
         System.out.println("Define Your Array");
         String[] array = new String[20];
         do {
@@ -91,7 +94,12 @@ public class Main {
             array = stringArray.split(",");
             System.out.println("inequality of types");
         } while (!checkArray(array));
-        write(array);
+        if (arrayName.equals("x") || arrayName.equals("X")){
+            writex(array);
+        }
+        else{
+            writey(array);
+        }
         System.out.println("Your Array has been created:");
 
     }
@@ -101,7 +109,8 @@ public class Main {
         // Reading array in file
 
         Scanner insertScanner = new Scanner(System.in);
-        String b[] = read();
+        String arrayName = insertScanner.next();
+        String b[] = arrayName.equals("x") || arrayName.equals("X") ? readx() : ready();
         if (intlizeDimensional(b) == 1) {
             int key = insertScanner.nextInt();
             b[key] = insertScanner.next();
@@ -120,13 +129,13 @@ public class Main {
                 b[Integer.parseInt(key[0]) * count + Integer.parseInt(key[1])] = editString[1];
                 // write an array to a file
                 if (checkArray(b)) {
-                    write(b);
+                    writex(b);
                 } else {
                     System.out.println("inequality of types");
                 }
-            } else {
+            } else if (keyString.matches("\\d")) {
                 String[] newElements = insertScanner.next().split(",");
-                String[] newb = new String[count * (Integer.parseInt(keyString)+1)];
+                String[] newb = new String[count * (Integer.parseInt(keyString) + 1)];
                 for (int i = 0; i < b.length; i++) {
                     newb[i] = b[i];
                 }
@@ -135,7 +144,12 @@ public class Main {
                 }
                 // write an array to a file
                 if (checkArray(newb)) {
-                    write(newb);
+                    if (arrayName.equals("x") || arrayName.equals("X")){
+                        writex(newb);
+                    }
+                    else{
+                        writey(newb);
+                    }
                 } else {
                     System.out.println("inequality of types");
                 }
@@ -146,21 +160,48 @@ public class Main {
 
     public static void remove() {
         // Reading array in file
-        String b[] = read();
         Scanner removeScanner = new Scanner(System.in);
-        int key = removeScanner.nextInt();
-        b[key] = null;
-        // write an array to a file
+        String arrayName = removeScanner.next();
+        String b[] = arrayName.equals("x") || arrayName.equals("X") ? readx() : ready();
+        if (intlizeDimensional(b) == 1) {
+            int key = removeScanner.nextInt();
+            b[key] = null;
+            // write an array to a file
+            writex(b);
+        } else if (intlizeDimensional(b) == 2) {
+            int count = intlizeContOfElements(b);
+            String keyString = removeScanner.next();
+            if (keyString.matches("\\d,\\d")) {
+                String[] key = keyString.split(",");
+                b[Integer.parseInt(key[0]) * count + Integer.parseInt(key[1])] = null;
+            } else if (keyString.matches("\\d")) {
+                String[] newb = new String[b.length - count];
+                for (int i = 0; i < newb.length; i++) {
+                    newb[i] = b[i];
+                    if (i == Integer.parseInt(keyString) * count) {
+                        i = i + count;
+                    }
+                }
+                b = newb;
+            }
 
-        write(b);
+            // write an array to a file
+            if (arrayName.equals("x") || arrayName.equals("X")){
+                writex(b);
+            }
+            else{
+                writey(b);
+            }
+        }
     }
 
 
     public static void replace() {
         // Reading array in file
-        String b[] = read();
+        Scanner replaceScanner = new Scanner(System.in);
+        String arrayName = replaceScanner.next();
+        String b[] = arrayName.equals("x") || arrayName.equals("X") ? readx() : ready();
         if (intlizeDimensional(b) == 1) {
-            Scanner replaceScanner = new Scanner(System.in);
             String replaceCommand = replaceScanner.next();
             String[] key = new String[2];
             String temp = new String();
@@ -171,7 +212,6 @@ public class Main {
             b[Integer.parseInt(key[1])] = temp;
         } else if (intlizeDimensional(b) == 2) {
             int count = intlizeContOfElements(b);
-            Scanner replaceScanner = new Scanner(System.in);
             String replaceCommand = replaceScanner.next();
             String[] key = new String[2];
             String temp = new String();
@@ -193,7 +233,12 @@ public class Main {
 
 
         // write an array to a file
-        write(b);
+        if (arrayName.equals("x") || arrayName.equals("X")){
+            writex(b);
+        }
+        else{
+            writey(b);
+        }
 
     }
 
@@ -220,9 +265,8 @@ public class Main {
         return true;
 
     }
-
-    public static String[] read() {
-        String filename = "array.txt";
+    public static String[] ready() {
+        String filename = "arrayy.txt";
         String strArray = "";
 
         String line;
@@ -247,8 +291,53 @@ public class Main {
         return array;
     }
 
-    public static void write(String[] x) {
-        String filename = "array.txt";
+    public static String[] readx() {
+        String filename = "arrayx.txt";
+        String strArray = "";
+
+        String line;
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(filename));
+            while ((line = in.readLine()) != null) {
+                strArray += line + " ";
+
+            }
+            in.close();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        String[] temp = strArray.split(" ");
+
+        String array[] = new String[temp.length];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = String.valueOf(temp[i]);
+        }
+        return array;
+    }
+    public static void writey(String[] x) {
+        String filename = "arrayy.txt";
+        BufferedWriter outputWriter = null;
+        try {
+            outputWriter = new BufferedWriter(new FileWriter(filename));
+            for (int i = 0; i < x.length; i++) {
+
+                outputWriter.write(x[i] + "");
+
+                outputWriter.newLine();
+            }
+            outputWriter.flush();
+            outputWriter.close();
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public static void writex(String[] x) {
+        String filename = "arrayx.txt";
         BufferedWriter outputWriter = null;
         try {
             outputWriter = new BufferedWriter(new FileWriter(filename));
