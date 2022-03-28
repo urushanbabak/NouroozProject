@@ -14,7 +14,8 @@ import java.lang.*;
 import java.io.*;
 
 enum Command {
-    create, insert, remove, replace, unknown;
+    create, insert, remove, replace, total, submissionxy, submissionyx, multiplication,
+    divisionxy, divisionyx, unknown;
 }
 
 public class Main {
@@ -43,7 +44,7 @@ public class Main {
 
     public static Command terminalCommandToEnum(String input) {
         input = input.toLowerCase();
-        Command command = Command.create;
+        Command command = Command.unknown;
         switch (input) {
             case "create":
                 command = Command.create;
@@ -58,8 +59,21 @@ public class Main {
                 command = Command.replace;
                 break;
             default:
-                command = Command.unknown;
+                break;
 
+        }
+        if (input.contains("+")) {
+            command = Command.total;
+        } else if (input.contains("x-") || input.contains("X-")) {
+            command = Command.submissionxy;
+        } else if (input.contains("y-") || input.contains("Y-")) {
+            command = Command.submissionyx;
+        } else if (input.contains("*")) {
+            command = Command.multiplication;
+        } else if (input.contains("x/") || input.contains("X/")) {
+            command = Command.divisionxy;
+        } else if (input.contains("y/") || input.contains("Y/")) {
+            command = Command.divisionyx;
         }
         return command;
     }
@@ -78,6 +92,24 @@ public class Main {
             case replace:
                 replace();
                 break;
+            case total:
+                total();
+                break;
+            case submissionxy:
+                submissionxy();
+                break;
+            case submissionyx:
+                submissionyx();
+                break;
+            case multiplication:
+                multiplication();
+                break;
+            case divisionxy:
+                divisionxy();
+                break;
+            case divisionyx:
+                divisionyx();
+                break;
             default:
                 ;
         }
@@ -94,10 +126,9 @@ public class Main {
             array = stringArray.split(",");
             System.out.println("inequality of types");
         } while (!checkArray(array));
-        if (arrayName.equals("x") || arrayName.equals("X")){
+        if (arrayName.equals("x") || arrayName.equals("X")) {
             writex(array);
-        }
-        else{
+        } else {
             writey(array);
         }
         System.out.println("Your Array has been created:");
@@ -129,7 +160,11 @@ public class Main {
                 b[Integer.parseInt(key[0]) * count + Integer.parseInt(key[1])] = editString[1];
                 // write an array to a file
                 if (checkArray(b)) {
-                    writex(b);
+                    if (arrayName.equals("x") || arrayName.equals("X")) {
+                        writex(b);
+                    } else {
+                        writey(b);
+                    }
                 } else {
                     System.out.println("inequality of types");
                 }
@@ -144,10 +179,9 @@ public class Main {
                 }
                 // write an array to a file
                 if (checkArray(newb)) {
-                    if (arrayName.equals("x") || arrayName.equals("X")){
+                    if (arrayName.equals("x") || arrayName.equals("X")) {
                         writex(newb);
-                    }
-                    else{
+                    } else {
                         writey(newb);
                     }
                 } else {
@@ -186,10 +220,9 @@ public class Main {
             }
 
             // write an array to a file
-            if (arrayName.equals("x") || arrayName.equals("X")){
+            if (arrayName.equals("x") || arrayName.equals("X")) {
                 writex(b);
-            }
-            else{
+            } else {
                 writey(b);
             }
         }
@@ -233,13 +266,150 @@ public class Main {
 
 
         // write an array to a file
-        if (arrayName.equals("x") || arrayName.equals("X")){
+        if (arrayName.equals("x") || arrayName.equals("X")) {
             writex(b);
-        }
-        else{
+        } else {
             writey(b);
         }
 
+    }
+
+    public static void total() {
+        System.out.print("Y+X=");
+        String x[] = readx();
+        String y[] = ready();
+        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+            String total[] = new String[x.length];
+            for (int i = 0; i < x.length; i++) {
+                double result = Double.parseDouble(editString(x[i])) +
+                        Double.parseDouble(editString(y[i]));
+                total[i] = String.valueOf(result);
+                if (x[i].contains("[")) {
+                    total[i] = "[" + total[i];
+                } else if (x[i].contains("]")) {
+                    total[i] = total[i] + "]";
+                }
+            }
+            System.out.println(Arrays.toString(total));
+        } else {
+            System.out.println(" inequality of sizes");
+        }
+    }
+
+    public static void submissionxy() {
+        System.out.print("X-Y=");
+        String x[] = readx();
+        String y[] = ready();
+        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+            String total[] = new String[x.length];
+            for (int i = 0; i < x.length; i++) {
+                double result = Double.parseDouble(editString(x[i])) -
+                        Double.parseDouble(editString(y[i]));
+                total[i] = String.valueOf(result);
+                if (x[i].contains("[")) {
+                    total[i] = "[" + total[i];
+                } else if (x[i].contains("]")) {
+                    total[i] = total[i] + "]";
+                }
+            }
+            System.out.println(Arrays.toString(total));
+        } else {
+            System.out.println(" inequality of sizes");
+        }
+    }
+
+
+    public static void submissionyx() {
+        System.out.print("Y-X=");
+        String x[] = readx();
+        String y[] = ready();
+        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+            String total[] = new String[x.length];
+            for (int i = 0; i < x.length; i++) {
+                double result = Double.parseDouble(editString(y[i])) -
+                        Double.parseDouble(editString(x[i]));
+                total[i] = String.valueOf(result);
+                if (x[i].contains("[")) {
+                    total[i] = "[" + total[i];
+                } else if (x[i].contains("]")) {
+                    total[i] = total[i] + "]";
+                }
+            }
+
+            System.out.println(Arrays.toString(total));
+
+        } else {
+            System.out.println(" inequality of sizes");
+        }
+    }
+
+    public static void multiplication() {
+        System.out.print("Y*X=");
+        String x[] = readx();
+        String y[] = ready();
+        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+            String total[] = new String[x.length];
+            for (int i = 0; i < x.length; i++) {
+                double result = Double.parseDouble(editString(x[i])) *
+                        Double.parseDouble(editString(y[i]));
+                total[i] = String.valueOf(result);
+                if (x[i].contains("[")) {
+                    total[i] = "[" + total[i];
+                } else if (x[i].contains("]")) {
+                    total[i] = total[i] + "]";
+                }
+            }
+
+            System.out.println(Arrays.toString(total));
+        } else {
+            System.out.println(" inequality of sizes");
+        }
+    }
+
+    public static void divisionxy() {
+        System.out.print("X/Y=");
+        String x[] = readx();
+        String y[] = ready();
+        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+            String total[] = new String[x.length];
+            for (int i = 0; i < x.length; i++) {
+                double result = Double.parseDouble(editString(x[i])) /
+                        Double.parseDouble(editString(y[i]));
+                total[i] = String.valueOf(result);
+                if (x[i].contains("[")) {
+                    total[i] = "[" + total[i];
+                } else if (x[i].contains("]")) {
+                    total[i] = total[i] + "]";
+                }
+            }
+
+            System.out.println(Arrays.toString(total));
+        } else {
+            System.out.println(" inequality of sizes");
+        }
+    }
+
+    public static void divisionyx() {
+        System.out.print("Y/X=");
+        String x[] = readx();
+        String y[] = ready();
+        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+            String total[] = new String[x.length];
+            for (int i = 0; i < x.length; i++) {
+                double result = Double.parseDouble(editString(y[i])) /
+                        Double.parseDouble(editString(x[i]));
+                total[i] = String.valueOf(result);
+                if (x[i].contains("[")) {
+                    total[i] = "[" + total[i];
+                } else if (x[i].contains("]")) {
+                    total[i] = total[i] + "]";
+                }
+            }
+
+            System.out.println(Arrays.toString(total));
+        } else {
+            System.out.println(" inequality of sizes");
+        }
     }
 
     public static boolean checkArray(String[] array) {
@@ -265,6 +435,7 @@ public class Main {
         return true;
 
     }
+
     public static String[] ready() {
         String filename = "arrayy.txt";
         String strArray = "";
@@ -316,6 +487,7 @@ public class Main {
         }
         return array;
     }
+
     public static void writey(String[] x) {
         String filename = "arrayy.txt";
         BufferedWriter outputWriter = null;
@@ -357,18 +529,14 @@ public class Main {
     }
 
     public static int intlizeDimensional(String[] array) {
-//        for (int i = 0; i < array.length; i++) {
-//            if (array[i].matches("[")) {
-//                return 2;
-//            } else if (array[i].matches("[[")) {
-//                return 3;
-//            }
-//
-//
-//        }
+        if (array[0].contains("[")) {
+            return 2;
+        } else {
+            return 1;
+        }
 
-        return 2;
     }
+
 
     public static int intlizeContOfElements(String[] array) {
         int count = 0;
@@ -448,6 +616,28 @@ public class Main {
         }
     }
 
+    public static String editString(String str) {
+        if (str.contains("[")) {
+            return str.replace("[", "");
+        } else if (str.contains("]")) {
+            return str.replace("]", "");
+        }
+        return str;
+    }
+
+    public static boolean isInteger(String[] array) {
+
+
+        return true;
+
+    }
+
+    public static boolean isFloat(String[] array) {
+
+
+        return true;
+
+    }
 }
 
 
