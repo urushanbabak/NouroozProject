@@ -670,8 +670,8 @@ public class Main {
 
     public static boolean isInteger(String[] array) {
         for (int i = 0; i < array.length; i++) {
-            if (!(array[i].matches("\\d") || !array[i].matches("\\[\\d")
-                    || array[i].matches("\\d]"))) {
+            if (!(array[i].matches("[0-9]+") || array[i].matches("\\[[0-9]+")
+                    || array[i].matches("[0-9]+]"))) {
                 return false;
             }
 
@@ -680,8 +680,9 @@ public class Main {
     }
     public static boolean isFloat(String[] array) {
         for (int i = 0; i < array.length; i++) {
-            if (!(array[i].matches("\\d") || !array[i].matches("\\[\\d")
-                    || array[i].matches("\\d]"))) {
+            if (!(array[i].matches("[+-]?([0-9]*[.])?[0-9]+") ||
+                    array[i].matches("\\[[+-]?([0-9]*[.])?[0-9]+")
+                    || array[i].matches("[+-]?([0-9]*[.])?[0-9]+\\]"))) {
                 return false;
             }
 
