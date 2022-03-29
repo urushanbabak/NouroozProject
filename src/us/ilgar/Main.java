@@ -260,7 +260,8 @@ public class Main {
             b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])] = editedStr[0];
             b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])] = editedStr[1];
             temp = b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])];
-            b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])] = b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])];
+            b[Integer.parseInt(key2[0]) * count + Integer.parseInt(key2[1])] =
+                    b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])];
             b[Integer.parseInt(key3[0]) * count + Integer.parseInt(key3[1])] = temp;
         }
 
@@ -278,7 +279,10 @@ public class Main {
         System.out.print("Y+X=");
         String x[] = readx();
         String y[] = ready();
-        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+                && intlizeContOfElements(x) == intlizeContOfElements(y)
+                && intlizeDimensional(x) == intlizeDimensional(y)) {
+
             String total[] = new String[x.length];
             for (int i = 0; i < x.length; i++) {
                 double result = Double.parseDouble(editString(x[i])) +
@@ -291,7 +295,11 @@ public class Main {
                 }
             }
             System.out.println(Arrays.toString(total));
-        } else {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+            System.out.println(" Wrong type");
+        } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
+            System.out.println(" inequality of dimensionals");
+        } else if (!(intlizeContOfElements(x) == intlizeContOfElements(y))) {
             System.out.println(" inequality of sizes");
         }
     }
@@ -300,7 +308,9 @@ public class Main {
         System.out.print("X-Y=");
         String x[] = readx();
         String y[] = ready();
-        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+                && intlizeContOfElements(x) == intlizeContOfElements(y)
+                && intlizeDimensional(x) == intlizeDimensional(y)) {
             String total[] = new String[x.length];
             for (int i = 0; i < x.length; i++) {
                 double result = Double.parseDouble(editString(x[i])) -
@@ -313,7 +323,11 @@ public class Main {
                 }
             }
             System.out.println(Arrays.toString(total));
-        } else {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+            System.out.println(" Wrong type");
+        } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
+            System.out.println(" inequality of dimensionals");
+        } else if (!(intlizeContOfElements(x) == intlizeContOfElements(y))) {
             System.out.println(" inequality of sizes");
         }
     }
@@ -323,7 +337,9 @@ public class Main {
         System.out.print("Y-X=");
         String x[] = readx();
         String y[] = ready();
-        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+                && intlizeContOfElements(x) == intlizeContOfElements(y)
+                && intlizeDimensional(x) == intlizeDimensional(y)) {
             String total[] = new String[x.length];
             for (int i = 0; i < x.length; i++) {
                 double result = Double.parseDouble(editString(y[i])) -
@@ -338,7 +354,11 @@ public class Main {
 
             System.out.println(Arrays.toString(total));
 
-        } else {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+            System.out.println(" Wrong type");
+        } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
+            System.out.println(" inequality of dimensionals");
+        } else if (!(intlizeContOfElements(x) == intlizeContOfElements(y))) {
             System.out.println(" inequality of sizes");
         }
     }
@@ -347,7 +367,9 @@ public class Main {
         System.out.print("Y*X=");
         String x[] = readx();
         String y[] = ready();
-        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+                && intlizeContOfElements(x) == intlizeContOfElements(y)
+                && intlizeDimensional(x) == intlizeDimensional(y)) {
             String total[] = new String[x.length];
             for (int i = 0; i < x.length; i++) {
                 double result = Double.parseDouble(editString(x[i])) *
@@ -361,7 +383,11 @@ public class Main {
             }
 
             System.out.println(Arrays.toString(total));
-        } else {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+            System.out.println(" Wrong type");
+        } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
+            System.out.println(" inequality of dimensionals");
+        } else if (!(intlizeContOfElements(x) == intlizeContOfElements(y))) {
             System.out.println(" inequality of sizes");
         }
     }
@@ -370,7 +396,9 @@ public class Main {
         System.out.print("X/Y=");
         String x[] = readx();
         String y[] = ready();
-        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+                && intlizeContOfElements(x) == intlizeContOfElements(y)
+                && intlizeDimensional(x) == intlizeDimensional(y)) {
             String total[] = new String[x.length];
             for (int i = 0; i < x.length; i++) {
                 double result = Double.parseDouble(editString(x[i])) /
@@ -384,7 +412,11 @@ public class Main {
             }
 
             System.out.println(Arrays.toString(total));
-        } else {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+            System.out.println(" Wrong type");
+        } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
+            System.out.println(" inequality of dimensionals");
+        } else if (!(intlizeContOfElements(x) == intlizeContOfElements(y))) {
             System.out.println(" inequality of sizes");
         }
     }
@@ -393,7 +425,9 @@ public class Main {
         System.out.print("Y/X=");
         String x[] = readx();
         String y[] = ready();
-        if (intlizeContOfElements(x) == intlizeContOfElements(y)) {
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+                && intlizeContOfElements(x) == intlizeContOfElements(y)
+                && intlizeDimensional(x) == intlizeDimensional(y)) {
             String total[] = new String[x.length];
             for (int i = 0; i < x.length; i++) {
                 double result = Double.parseDouble(editString(y[i])) /
@@ -407,7 +441,11 @@ public class Main {
             }
 
             System.out.println(Arrays.toString(total));
-        } else {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+            System.out.println(" Wrong type");
+        } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
+            System.out.println(" inequality of dimensionals");
+        } else if (!(intlizeContOfElements(x) == intlizeContOfElements(y))) {
             System.out.println(" inequality of sizes");
         }
     }
@@ -540,17 +578,22 @@ public class Main {
 
     public static int intlizeContOfElements(String[] array) {
         int count = 0;
-        for (int i = 0; ; i++) {
+        if (array[0].contains("[")) {
 
-            if (array[i].substring(array[i].length() - 1).equals("]")) {
-                count = i;
-                break;
+
+            for (int i = 0; ; i++) {
+
+                if (array[i].contains("]")) {
+                    count = i;
+                    break;
+
+                }
 
             }
 
+            return count + 1;
         }
-
-        return count + 1;
+        return 0;
     }
 
     public static String[] editString(String[] str) {
@@ -626,18 +669,25 @@ public class Main {
     }
 
     public static boolean isInteger(String[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (!(array[i].matches("\\d") || !array[i].matches("\\[\\d")
+                    || array[i].matches("\\d]"))) {
+                return false;
+            }
 
-
+        }
         return true;
-
     }
-
     public static boolean isFloat(String[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (!(array[i].matches("\\d") || !array[i].matches("\\[\\d")
+                    || array[i].matches("\\d]"))) {
+                return false;
+            }
 
-
+        }
         return true;
-
     }
+
+
 }
-
-
