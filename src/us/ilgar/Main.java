@@ -318,7 +318,7 @@ public class Main {
         System.out.print("Y+X=");
         String x[] = readx();
         String y[] = ready();
-        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y))
                 && intlizeContOfElements(x) == intlizeContOfElements(y)
                 && intlizeDimensional(x) == intlizeDimensional(y)) {
 
@@ -345,7 +345,7 @@ public class Main {
                 System.out.println(Arrays.toString(total));
             }
 
-        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y)))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
             System.out.println(" inequality of dimensionals");
@@ -358,7 +358,7 @@ public class Main {
         System.out.print("X-Y=");
         String x[] = readx();
         String y[] = ready();
-        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y))
                 && intlizeContOfElements(x) == intlizeContOfElements(y)
                 && intlizeDimensional(x) == intlizeDimensional(y)) {
             String total[] = new String[x.length];
@@ -383,7 +383,7 @@ public class Main {
                 }
                 System.out.println(Arrays.toString(total));
             }
-        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y)))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
             System.out.println(" inequality of dimensionals");
@@ -397,7 +397,7 @@ public class Main {
         System.out.print("Y-X=");
         String x[] = readx();
         String y[] = ready();
-        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y))
                 && intlizeContOfElements(x) == intlizeContOfElements(y)
                 && intlizeDimensional(x) == intlizeDimensional(y)) {
             String total[] = new String[x.length];
@@ -424,7 +424,7 @@ public class Main {
                 }
                 System.out.println(Arrays.toString(total));
             }
-        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y)))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
             System.out.println(" inequality of dimensionals");
@@ -437,7 +437,7 @@ public class Main {
         System.out.print("Y*X=");
         String x[] = readx();
         String y[] = ready();
-        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y))
                 && intlizeContOfElements(x) == intlizeContOfElements(y)
                 && intlizeDimensional(x) == intlizeDimensional(y)) {
             String total[] = new String[x.length];
@@ -463,7 +463,7 @@ public class Main {
                 }
                 System.out.println(Arrays.toString(total));
             }
-        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y)))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
             System.out.println(" inequality of dimensionals");
@@ -476,7 +476,7 @@ public class Main {
         System.out.print("X/Y=");
         String x[] = readx();
         String y[] = ready();
-        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y))
                 && intlizeContOfElements(x) == intlizeContOfElements(y)
                 && intlizeDimensional(x) == intlizeDimensional(y)) {
             String total[] = new String[x.length];
@@ -502,7 +502,7 @@ public class Main {
                 }
                 System.out.println(Arrays.toString(total));
             }
-        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y)))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
             System.out.println(" inequality of dimensionals");
@@ -515,7 +515,7 @@ public class Main {
         System.out.print("Y/X=");
         String x[] = readx();
         String y[] = ready();
-        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y))
                 && intlizeContOfElements(x) == intlizeContOfElements(y)
                 && intlizeDimensional(x) == intlizeDimensional(y)) {
             String total[] = new String[x.length];
@@ -541,7 +541,7 @@ public class Main {
                 }
                 System.out.println(Arrays.toString(total));
             }
-        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y)))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
             System.out.println(" inequality of dimensionals");
@@ -554,7 +554,7 @@ public class Main {
         System.out.print("X#Y=");
         String x[] = readx();
         String y[] = ready();
-        if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))
+        if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y)))
                 && intlizeContOfElements(x) == intlizeContOfElements(y)
                 && intlizeDimensional(x) == intlizeDimensional(y)) {
 
@@ -579,7 +579,7 @@ public class Main {
                 System.out.println(Arrays.toString(total));
             }
 
-        } else if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))) {
+        } else if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
             System.out.println(" inequality of dimensionals");
@@ -592,7 +592,7 @@ public class Main {
         System.out.print("Y#X=");
         String x[] = readx();
         String y[] = ready();
-        if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))
+        if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y)))
                 && intlizeContOfElements(x) == intlizeContOfElements(y)
                 && intlizeDimensional(x) == intlizeDimensional(y)) {
 
@@ -617,7 +617,7 @@ public class Main {
                 System.out.println(Arrays.toString(total));
             }
 
-        } else if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))) {
+        } else if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == intlizeDimensional(y))) {
             System.out.println(" inequality of dimensionals");
@@ -636,7 +636,7 @@ public class Main {
         int row2 = y.length / intlizeContOfElements(y);
         int col2 = intlizeContOfElements(y);
         double B[][] = convertTo2dArray(y);
-        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y))
                 && intlizeContOfElements(x) == y.length / intlizeContOfElements(y)
                 && intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2) {
             int i, j, k;
@@ -665,7 +665,7 @@ public class Main {
             // Print the result
 
             printMatrix(C, row1, col2);
-        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y)))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2)) {
             System.out.println(" Wrong dimensionals");
@@ -684,7 +684,7 @@ public class Main {
         int row2 = x.length / intlizeContOfElements(x);
         int col2 = intlizeContOfElements(x);
         double B[][] = convertTo2dArray(x);
-        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y))
                 && intlizeContOfElements(y) == x.length / intlizeContOfElements(x)
                 && intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2) {
 
@@ -713,7 +713,7 @@ public class Main {
 
             // Print the result
             printMatrix(C, row1, col2);
-        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(y)))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2)) {
             System.out.println(" Wrong dimensionals");
@@ -723,33 +723,60 @@ public class Main {
     }
 
     public static void aTx() {
-        System.out.print("X&=");
+        System.out.println("X&=");
         String x[] = readx();
-        String y[] = ready();
-        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
-                && intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2) {
+        int row1 = x.length / intlizeContOfElements(x);
+        int col1 = intlizeContOfElements(x);
+        double A[][] = convertTo2dArray(x);
+        double B[][] = new double[col1][row1];
+        if ((isInteger(x) || isFloat(x))
+                && intlizeDimensional(x) == 2) {
+            int i, j;
+            for (i = 0; i < col1; i++)
+                for (j = 0; j < row1; j++)
+                    B[i][j] = A[j][i];
 
+            for (i = 0; i < col1; i++)
+            {
+                for (j = 0; j < row1; j++)
+                    System.out.print(B[i][j] + " ");
+                System.out.print("\n");
+            }
 
-        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+        } else if (!((isInteger(x) || isFloat(x)))) {
             System.out.println(" Wrong type");
-        } else if (!(intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2)) {
+        } else if (!(intlizeDimensional(x) == 2)) {
             System.out.println(" Wrong dimensionals");
 
         }
     }
 
     public static void aTy() {
-        System.out.print("Y&=");
-        String x[] = readx();
+        System.out.println("Y&=");
         String y[] = ready();
-        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
-                && intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2) {
+        int row1 = y.length / intlizeContOfElements(y);
+        int col1 = intlizeContOfElements(y);
+        double A[][] = convertTo2dArray(y);
+        double B[][] = new double[col1][row1];
+        if ((isInteger(y) || isFloat(y))
+                && intlizeDimensional(y) == 2) {
+            int i, j;
+            for (i = 0; i < col1; i++)
+                for (j = 0; j < row1; j++)
+                    B[i][j] = A[j][i];
 
+            for (i = 0; i < col1; i++)
+            {
+                for (j = 0; j < row1; j++)
+                    System.out.print(B[i][j] + " ");
+                System.out.print("\n");
+            }
 
-        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+        } else if (!((isInteger(y) || isFloat(y)))) {
             System.out.println(" Wrong type");
-        } else if (!(intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2)) {
+        } else if (!(intlizeDimensional(y) == 2)) {
             System.out.println(" Wrong dimensionals");
+
         }
     }
 
