@@ -15,7 +15,8 @@ import java.io.*;
 
 enum Command {
     create, insert, remove, replace, total, submissionxy, submissionyx, multiplication,
-    divisionxy, divisionyx, adhesivexy, unknown;
+    divisionxy, divisionyx, adhesivexy, adhesiveyx, matrixmultiplicationxy,
+    matrixmultiplicationyx, aTx, aTy, unknown;
 }
 
 public class Main {
@@ -76,6 +77,16 @@ public class Main {
             command = Command.divisionyx;
         } else if (input.contains("x#") || input.contains("X#")) {
             command = Command.adhesivexy;
+        } else if (input.contains("y#") || input.contains("Y#")) {
+            command = Command.adhesiveyx;
+        } else if (input.contains("x@") || input.contains("X@")) {
+            command = Command.matrixmultiplicationxy;
+        } else if (input.contains("y@") || input.contains("Y@")) {
+            command = Command.matrixmultiplicationyx;
+        } else if (input.contains("x&") || input.contains("X&")) {
+            command = Command.aTx;
+        } else if (input.contains("y&") || input.contains("Y&")) {
+            command = Command.aTy;
         }
         return command;
     }
@@ -114,6 +125,21 @@ public class Main {
                 break;
             case adhesivexy:
                 adhesivexy();
+                break;
+            case adhesiveyx:
+                adhesiveyx();
+                break;
+            case matrixmultiplicationxy:
+                matrixmultiplicationxy();
+                break;
+            case matrixmultiplicationyx:
+                matrixmultiplicationyx();
+                break;
+            case aTx:
+                aTx();
+                break;
+            case aTy:
+                aTy();
                 break;
             default:
                 ;
@@ -561,8 +587,9 @@ public class Main {
             System.out.println(" inequality of sizes");
         }
     }
+
     public static void adhesiveyx() {
-        System.out.print("X#Y=");
+        System.out.print("Y#X=");
         String x[] = readx();
         String y[] = ready();
         if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))
@@ -599,20 +626,87 @@ public class Main {
         }
     }
 
-    public static boolean checkArray(String[] array) {
-        for (int i = 0; i < array.length; i++) {
+    public static void matrixmultiplicationxy() {
+        System.out.print("X@Y=");
+        String x[] = readx();
+        String y[] = ready();
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+                && intlizeContOfElements(x) == y.length / intlizeContOfElements(y)
+                && intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2) {
 
-            System.out.print(!(array[i].matches("\\[\\d") || array[i].matches("\\d]")
-                    || array[i].matches("\\d")
-                    || array[i].matches("\\[[+-]?([0-9]*[.])?[0-9]+")
-                    || array[i].matches("[+-]?([0-9]*[.])?[0-9]+]")
-                    || array[i].matches("[+-]?([0-9]*[.])?[0-9]+")));
-            System.out.print(!(array[i].matches("\\[[abc]{1}")
-                    || array[i].matches("[abc]{1}")
-                    || array[i].matches("[abc]{1}]")));
-            System.out.println(!(array[i].matches("\\[[abc]") || array[i].matches("[abc]")
-                    || array[i].matches("[abc]]")));
+
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+            System.out.println(" Wrong type");
+        } else if (!(intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2)) {
+            System.out.println(" Wrong dimensionals");
+        } else if (!(intlizeContOfElements(x) == y.length / intlizeContOfElements(y))) {
+            System.out.println(" incompatible dimension");
         }
+    }
+
+    public static void matrixmultiplicationyx() {
+        System.out.print("Y@X=");
+        String x[] = readx();
+        String y[] = ready();
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+                && intlizeContOfElements(y) == x.length / intlizeContOfElements(x)
+                && intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2) {
+
+
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+            System.out.println(" Wrong type");
+        } else if (!(intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2)) {
+            System.out.println(" Wrong dimensionals");
+        } else if (!(intlizeContOfElements(y) == x.length / intlizeContOfElements(x))) {
+            System.out.println(" incompatible dimension");
+        }
+    }
+
+    public static void aTx() {
+        System.out.print("X&=");
+        String x[] = readx();
+        String y[] = ready();
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+                && intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2) {
+
+
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+            System.out.println(" Wrong type");
+        } else if (!(intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2)) {
+            System.out.println(" Wrong dimensionals");
+
+        }
+    }
+
+    public static void aTy() {
+        System.out.print("Y&=");
+        String x[] = readx();
+        String y[] = ready();
+        if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
+                && intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2) {
+
+
+        } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
+            System.out.println(" Wrong type");
+        } else if (!(intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2)) {
+            System.out.println(" Wrong dimensionals");
+        }
+    }
+
+    public static boolean checkArray(String[] array) {
+//        for (int i = 0; i < array.length; i++) {
+//
+//            System.out.print(!(array[i].matches("\\[\\d") || array[i].matches("\\d]")
+//                    || array[i].matches("\\d")
+//                    || array[i].matches("\\[[+-]?([0-9]*[.])?[0-9]+")
+//                    || array[i].matches("[+-]?([0-9]*[.])?[0-9]+]")
+//                    || array[i].matches("[+-]?([0-9]*[.])?[0-9]+")));
+//            System.out.print(!(array[i].matches("\\[[abc]{1}")
+//                    || array[i].matches("[abc]{1}")
+//                    || array[i].matches("[abc]{1}]")));
+//            System.out.println(!(array[i].matches("\\[[abc]") || array[i].matches("[abc]")
+//                    || array[i].matches("[abc]]")));
+//        }
 
         if (array[0].
 
