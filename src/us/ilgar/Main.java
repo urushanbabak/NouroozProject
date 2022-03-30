@@ -627,14 +627,44 @@ public class Main {
     }
 
     public static void matrixmultiplicationxy() {
-        System.out.print("X@Y=");
+        System.out.println("X@Y=");
         String x[] = readx();
         String y[] = ready();
+        int row1 = x.length / intlizeContOfElements(x);
+        int col1 = intlizeContOfElements(x);
+        double A[][] = convertTo2dArray(x);
+        int row2 = y.length / intlizeContOfElements(y);
+        int col2 = intlizeContOfElements(y);
+        double B[][] = convertTo2dArray(y);
         if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
                 && intlizeContOfElements(x) == y.length / intlizeContOfElements(y)
                 && intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2) {
+            int i, j, k;
 
+            // Check if multiplication is Possible
+            if (row2 != col1) {
 
+                System.out.println(
+                        "\nMultiplication Not Possible");
+                return;
+            }
+
+            // Matrix to store the result
+            // The product matrix will
+            // be of size row1 x col2
+            double C[][] = new double[row1][col2];
+
+            // Multiply the two matrices
+            for (i = 0; i < row1; i++) {
+                for (j = 0; j < col2; j++) {
+                    for (k = 0; k < row2; k++)
+                        C[i][j] += A[i][k] * B[k][j];
+                }
+            }
+
+            // Print the result
+
+            printMatrix(C, row1, col2);
         } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2)) {
@@ -645,14 +675,44 @@ public class Main {
     }
 
     public static void matrixmultiplicationyx() {
-        System.out.print("Y@X=");
+        System.out.println("Y@X=");
         String x[] = readx();
         String y[] = ready();
+        int row1 = y.length / intlizeContOfElements(y);
+        int col1 = intlizeContOfElements(y);
+        double A[][] = convertTo2dArray(y);
+        int row2 = x.length / intlizeContOfElements(x);
+        int col2 = intlizeContOfElements(x);
+        double B[][] = convertTo2dArray(x);
         if ((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x))
                 && intlizeContOfElements(y) == x.length / intlizeContOfElements(x)
                 && intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2) {
 
+            int i, j, k;
 
+            // Check if multiplication is Possible
+            if (row2 != col1) {
+
+                System.out.println(
+                        "\nMultiplication Not Possible");
+                return;
+            }
+
+            // Matrix to store the result
+            // The product matrix will
+            // be of size row1 x col2
+            double C[][] = new double[row1][col2];
+
+            // Multiply the two matrices
+            for (i = 0; i < row1; i++) {
+                for (j = 0; j < col2; j++) {
+                    for (k = 0; k < row2; k++)
+                        C[i][j] += A[i][k] * B[k][j];
+                }
+            }
+
+            // Print the result
+            printMatrix(C, row1, col2);
         } else if (!((isInteger(x) || isFloat(x)) && (isInteger(y) || isFloat(x)))) {
             System.out.println(" Wrong type");
         } else if (!(intlizeDimensional(x) == 2 && intlizeDimensional(y) == 2)) {
@@ -976,6 +1036,33 @@ public class Main {
 
         }
         return true;
+    }
+
+    public static double[][] convertTo2dArray(String[] array) {
+        double[][] result = new
+                double[array.length / intlizeContOfElements(array)][intlizeContOfElements(array)];
+        int key = 0;
+        for (int i = 0; i < array.length / intlizeContOfElements(array); i++) {
+            for (int j = 0; j < intlizeContOfElements(array); j++) {
+                result[i][j] = Double.parseDouble(editString(array[key]));
+                key++;
+                if (key == array.length) {
+                    return result;
+                }
+            }
+        }
+        return result;
+    }
+
+    static void printMatrix(double M[][],
+                            int rowSize,
+                            int colSize) {
+        for (int i = 0; i < rowSize; i++) {
+            for (int j = 0; j < colSize; j++)
+                System.out.print(M[i][j] + " ");
+
+            System.out.println();
+        }
     }
 
 
